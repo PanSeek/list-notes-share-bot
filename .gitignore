@@ -1,0 +1,13 @@
+# ide's
+.idea
+.vscode
+
+# dependency
+node_modules
+
+# build
+dist
+
+# env
+.env.production
+.env.development

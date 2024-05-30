@@ -1,0 +1,38 @@
+{
+  "name": "list-notes-share-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start:build:prod": "tsc --build && cross-env NODE_ENV=production node ./dist/index.js",
+    "start:dev": "cross-env NODE_ENV=development npx tsx watch src/index.ts",
+    "start:prod": "cross-env NODE_ENV=production npx tsx src/index.ts",
+    "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
+    "generate:fluent": "npx fluent2ts -o src/languages/types.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fluent/bundle": "^0.18.0",
+    "@gramio/keyboards": "^0.3.2",
+    "@prisma/client": "^5.5.2",
+    "@puregram/callback-data": "^1.2.3",
+    "@puregram/scenes": "^2.0.1",
+    "@puregram/session": "^3.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "env-var": "^7.4.1",
+    "pg": "^8.11.3",
+    "puregram": "^2.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "prisma": "^5.5.2",
+    "tsx": "^4.7.1"
+  }
+}

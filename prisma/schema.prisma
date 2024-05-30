@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Language {
+  EN
+  RU
+}
+
+model User {
+  id          Int         @id @default(autoincrement())
+  telegramId  BigInt      @unique @map("telegram_id")
+  language    Language    @default(RU)
+  name        String      @unique // От 3 до 20 символов
+  notes       Note[] //
+  lists       List[]
+  sharedLists UserAccessList[]
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @default(now()) @map("updated_at")
+
+  @@map("users")
+}
+
+model Note {
+  id          Int         @id @default(autoincrement())
+  content     String
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade) //
+  authorId    Int         @map("author_id") //
+  list        List        @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId      Int         @map("list_id")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @default(now()) @map("updated_at")
+
+  @@map("notes")
+}
+
+model List {
+  id          Int         @id @default(autoincrement())
+  isMain      Boolean     @default(false) @map("is_main") // true only when create user
+  name        String      @default(cuid())
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    Int         @map("author_id")
+  notes       Note[]
+  accessUsers UserAccessList[]
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @default(now()) @map("updated_at")
+
+  @@map("lists")
+}
+
+model UserAccessList {
+  id          Int         @id @default(autoincrement())
+  list        List        @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId      Int         @map("list_id")
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int         @map("user_id")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @default(now()) @map("updated_at")
+
+  @@map("user_access_list")
+}
