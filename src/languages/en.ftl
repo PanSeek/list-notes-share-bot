@@ -12,6 +12,7 @@ failed-delete-main-list = { icon-attention } Failed to delete list!
 failed-delete-note = { icon-attention } The note has already been deleted!
 failed-leave-list = { icon-attention } I couldn't get out of the list. Most likely you have already been kicked off the list!
 failed-kick-user-list = { icon-attention } Couldn't kick a user from the list. Most likely, the user left the list himself!
+failed-signup-nickname = { icon-attention } Unfortunately, the nickname "{ $name }" is already occupied. Try another one!
 
 not-author-list = { icon-attention } You are not the author of the list
 not-found-list = { icon-attention } Not found list

@@ -39,6 +39,10 @@ sceneManager.addScenes([
                 if (!validatorNickname(nickname))
                     return await context.send(getLanguageString(context.scene.state.language, 'write-own-nickname')!);
 
+                const userFind = await prisma.user.findMany({ where: { name: { contains: nickname, mode: 'insensitive' } } });
+                if (userFind.length > 0)
+                    return await context.send(getLanguageString(context.scene.state.language, 'failed-signup-nickname', { name: nickname })!);
+
                 context.scene.state.nickname = nickname;
 
                 const user = await prisma.user.upsert({

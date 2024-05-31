@@ -2,6 +2,7 @@ import type {
     FluentBundle,
     FluentVariable,
     Message as FluentMessage,
+    // @ts-ignore
 } from "@fluent/bundle"
 
 export interface LocalesMap {
@@ -16,6 +17,9 @@ export interface LocalesMap {
     "failed-delete-note": never
     "failed-leave-list": never
     "failed-kick-user-list": never
+    "failed-signup-nickname": {
+        name: FluentVariable
+    }
     "not-author-list": never
     "not-found-list": never
     "not-found-main-list": never

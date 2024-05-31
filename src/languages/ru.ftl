@@ -12,6 +12,7 @@ failed-delete-main-list = { icon-attention } Удалить список не п
 failed-delete-note = { icon-attention } Заметка уже удалена!
 failed-leave-list = { icon-attention } Не получилось выйти из списка. Вероятнее всего вас уже выгнали из списка!
 failed-kick-user-list = { icon-attention } Не получилось выгнать пользователя из списка. Вероятнее всего пользователь сам вышел из списка!
+failed-signup-nickname = { icon-attention } К сожалению, никнейм "{ $name }" уже занят. Попробуйте другой!
 
 not-author-list = { icon-attention } Вы не автор списка
 not-found-list = { icon-attention } Не найден список
